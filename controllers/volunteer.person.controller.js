@@ -1,5 +1,5 @@
 const e = require("express");
-const catchAsync = require("../utils/catchAsync");
+const catchAsync = require("../utils/catch.async");
 
 exports.getAllVolunteerPersons = catchAsync(async (req, res, next) => {
   res.status(200).json({
