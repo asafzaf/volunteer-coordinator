@@ -1,12 +1,14 @@
 const express = require("express");
-const app = express();
 const morgan = require("morgan");
+const cors = require("cors");
+const app = express();
 const globalErrorHandler = require("../controllers/error.controller");
 const userRouter = require("../routers/user.router");
 const volunteerTaskRouter = require("../routers/volunteer.task.router");
 const volunteerPersonRouter = require("../routers/volunteer.person.router");
 const port = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
