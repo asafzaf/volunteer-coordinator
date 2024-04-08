@@ -32,6 +32,17 @@ const userSchema = new Schema({
     },
   },
   passwordChangedAt: Date,
+  location: {
+    type: String,
+    required: [true, "Please enter your location"],
+  },
+  skills: {
+    type: Array,
+    required: [true, "Please enter your skills"],
+  },
+  tasks: {
+    type: Array,
+  },
 });
 
 userSchema.pre("save", async function (next) {
