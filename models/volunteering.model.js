@@ -4,7 +4,7 @@ const volunteeringSchema = new Schema({
     type: String,
     required: [true, "Please enter the title of the volunteering opportunity"],
   },
-  describtion: {
+  description: {
     type: String,
     required: [true, "Please enter a describtion"],
   },
@@ -32,4 +32,4 @@ const volunteeringSchema = new Schema({
     type: Array,
   },
 });
-module.exports = model("volunteering", volunteeringSchema);
+module.exports = model("volunteerings", volunteeringSchema);

@@ -1,36 +1,31 @@
 const catchAsync = require("../utils/catch.async");
-
+const volunteerTaskRepository = require("../repositories/volunteering.repository");
 exports.getAllVolunteerTasks = catchAsync(async (req, res, next) => {
-  res.status(200).json({
-    status: "success",
-    message: "This route is not yet defined!",
-  });
+  const volunteerTasks = await volunteerTaskRepository.find();
+  res.status(200).send(volunteerTasks);
 });
 
 exports.getVolunteerTaskById = catchAsync(async (req, res, next) => {
-  res.status(200).json({
-    status: "success",
-    message: "This route is not yet defined!",
-  });
+  const volunteerTask = await volunteerTaskRepository.retrieve(req.params.id);
+  res.status(200).send(volunteerTask);
 });
 
 exports.createVolunteerTask = catchAsync(async (req, res, next) => {
-  res.status(200).json({
-    status: "success",
-    message: "This route is not yet defined!",
-  });
+  const createVolunteerTask = await volunteerTaskRepository.create(req.body);
+  res.status(200).send(createVolunteerTask);
 });
 
 exports.updateVolunteerTask = catchAsync(async (req, res, next) => {
-  res.status(200).json({
-    status: "success",
-    message: "This route is not yet defined!",
-  });
+  const updateVolunteerTask = await volunteerTaskRepository.put(
+    req.params.id,
+    req.body
+  );
+  res.status(200).send(updateVolunteerTask);
 });
 
 exports.deleteVolunteerTask = catchAsync(async (req, res, next) => {
-  res.status(200).json({
-    status: "success",
-    message: "This route is not yet defined!",
-  });
+  const deleteVolunteerTask = await volunteerTaskRepository.delete(
+    req.params.id
+  );
+  res.status(200).send(deleteVolunteerTask);
 });
