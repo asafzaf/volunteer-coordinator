@@ -9,7 +9,6 @@ const { UnauthorizedError } = require("../errors/userErrors");
 
 const { JWT_SECRET, JWT_EXPIRES_IN } = require("../constants");
 
-
 const signToken = (id) => {
   return jwt.sign({ id: id }, JWT_SECRET, {
     expiresIn: JWT_EXPIRES_IN,
@@ -34,6 +33,8 @@ exports.signUp = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
+    location: req.body.location,
+    skills: req.body.skills,
   });
   if (!newUser) {
     return next(new BadRequestError("data"));

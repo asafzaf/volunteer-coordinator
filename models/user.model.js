@@ -38,6 +38,18 @@ const userSchema = new Schema({
   },
   skills: {
     type: Array,
+    validate: {
+      validator: function (val) {
+        return (
+          Array.isArray(val) &&
+          val.length > 0 &&
+          val.every(
+            (skill) => typeof skill === "string" && skill.trim().length > 0
+          )
+        );
+      },
+      message: "Please enter at least one skill",
+    },
     required: [true, "Please enter your skills"],
   },
   tasks: {
