@@ -10,7 +10,19 @@ const volunteeringSchema = new Schema({
   },
   skills: {
     type: Array,
-    required: [true, "Please enter the skills"],
+    validate: {
+      validator: function (val) {
+        return (
+          Array.isArray(val) &&
+          val.length > 0 &&
+          val.every(
+            (skill) => typeof skill === "string" && skill.trim().length > 0
+          )
+        );
+      },
+      message: "Please enter at least one skill",
+    },
+    required: [true, "Please enter skills"],
   },
   requirements: {
     type: String,
