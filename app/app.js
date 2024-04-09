@@ -6,6 +6,8 @@ const globalErrorHandler = require("../controllers/error.controller");
 const userRouter = require("../routers/user.router");
 const volunteerTaskRouter = require("../routers/volunteer.task.router");
 const volunteerPersonRouter = require("../routers/volunteer.person.router");
+const skillRouter = require("../routers/skill.router");
+const locationRouter = require("../routers/location.router");
 const port = process.env.PORT || 3000;
 
 app.use(cors());
@@ -13,6 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
+app.use("/api/v1/locations", locationRouter);
+app.use("/api/v1/skills", skillRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/volunteer-tasks", volunteerTaskRouter);
 app.use("/api/v1/volunteer-persons", volunteerPersonRouter);
