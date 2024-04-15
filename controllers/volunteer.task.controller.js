@@ -1,8 +1,15 @@
 const catchAsync = require("../utils/catch.async");
 const volunteerTaskRepository = require("../repositories/volunteering.repository");
 exports.getAllVolunteerTasks = catchAsync(async (req, res, next) => {
-  const volunteerTasks = await volunteerTaskRepository.find();
-  res.status(200).send(volunteerTasks);
+  let volunteerTasks = await volunteerTaskRepository.find();
+  if (req.query.volunteers) {
+    volunteerTasks = volunteerTasks.filter((volunteerTask) => {
+      return volunteerTask.volunteers.includes(req.query.volunteers);
+    });
+    res.status(200).send(volunteerTasks);
+  } else {
+    res.status(200).send(volunteerTasks);
+  }
 });
 
 exports.getVolunteerTaskById = catchAsync(async (req, res, next) => {
