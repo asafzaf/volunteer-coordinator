@@ -1,5 +1,6 @@
 const catchAsync = require("../utils/catch.async");
 const volunteerTaskRepository = require("../repositories/volunteering.repository");
+
 exports.getAllVolunteerTasks = catchAsync(async (req, res, next) => {
   let volunteerTasks = await volunteerTaskRepository.find();
   if (req.query.volunteers) {
@@ -28,6 +29,27 @@ exports.updateVolunteerTask = catchAsync(async (req, res, next) => {
     req.body
   );
   res.status(200).send(updateVolunteerTask);
+});
+
+exports.updateVolunteers = catchAsync(async (req, res, next) => {
+  // update the volunteers array
+  const { id } = req.params;
+  const { volunteers } = req.body;
+
+  try {
+    const volunteering = await volunteerTaskRepository.retrieve(id);
+    if (!volunteering) {
+      return res.status(404).json({ message: "Volunteering task not found" });
+    }
+
+    volunteering.volunteers = volunteers;
+
+    const updatedVolunteering = await volunteering.put(id, volunteering);
+
+    res.status(200).json(updatedVolunteering);
+  } catch (error) {
+    res.status(200).send(updateVolunteerTask);
+  }
 });
 
 exports.deleteVolunteerTask = catchAsync(async (req, res, next) => {
