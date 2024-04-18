@@ -31,34 +31,6 @@ exports.updateVolunteerTask = catchAsync(async (req, res, next) => {
   res.status(200).send(updateVolunteerTask);
 });
 
-// exports.updateVolunteers = catchAsync(async (req, res, next) => {
-//   // update the volunteers array
-
-//   const taskId = req.params.taskid;
-//   const userId = req.params.userid;
-
-//   try {
-//     const volunteering = await volunteerTaskRepository.retrieve(taskId);
-//     if (!volunteering) {
-//       return res.status(404).json({ message: "Volunteering task not found" });
-//     }
-
-//     const updatedTask = {
-//       ...volunteering,
-//       volunteers: [...volunteering.volunteers, userId],
-//     };
-
-//     const updatedVolunteering = await volunteerTaskRepository.put(
-//       taskId,
-//       updatedTask
-//     );
-
-//     res.status(200).json(updatedVolunteering);
-//   } catch (error) {
-//     res.status(200).send(updatedVolunteering);
-//   }
-// });
-
 exports.deleteVolunteerTask = catchAsync(async (req, res, next) => {
   const deleteVolunteerTask = await volunteerTaskRepository.delete(
     req.params.id
