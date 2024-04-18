@@ -18,6 +18,6 @@ router
   .patch(updateVolunteerTask)
   .delete(deleteVolunteerTask);
 
-router.route("/:userid/:taskid").patch(updateVolunteers);
+// router.route("/:userid/:taskid").patch(updateVolunteers);
 
 module.exports = router;
