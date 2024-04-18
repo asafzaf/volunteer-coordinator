@@ -1,6 +1,9 @@
 const e = require("express");
 const catchAsync = require("../utils/catch.async");
 const userRepository = require("../repositories/user.repository");
+const {
+  updateVolunteers,
+} = require("../controllers/volunteer.task.controller");
 
 exports.getAllVolunteerPersons = catchAsync(async (req, res, next) => {
   const volunteerPersons = await userRepository.find();
@@ -23,6 +26,9 @@ exports.updateVolunteerPerson = catchAsync(async (req, res, next) => {
     req.body
   );
   res.status(200).send(updateVolunteerPerson);
+
+  // update the volunteers array
+  updateVolunteers(req, res, next);
 });
 
 exports.deleteVolunteerPerson = catchAsync(async (req, res, next) => {
