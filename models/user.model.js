@@ -55,6 +55,9 @@ const userSchema = new Schema({
   tasks: {
     type: Array,
   },
+  completedTasks: {
+    type: Array,
+  },
 });
 
 userSchema.pre("save", async function (next) {
