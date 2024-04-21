@@ -54,9 +54,11 @@ const userSchema = new Schema({
   },
   tasks: {
     type: Array,
+    default: [],
   },
   completedTasks: {
     type: Array,
+    default: [],
   },
 });
 
