@@ -11,9 +11,9 @@ function handleSocket(server) {
     userTasks.forEach((taskId) => {
       socket.join(taskId);
     });
-    socket.on("chat message", (msg) => {
+    socket.on("chat message", ({ messageInput, user }) => {
       userTasks.forEach((taskId) => {
-        io.to(taskId).emit("chat message", msg);
+        io.to(taskId).emit("chat message", { messageInput, user });
       });
     });
     console.log("a user connected");
