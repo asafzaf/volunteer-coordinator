@@ -1,7 +1,10 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const { createServer } = require("node:http");
 const app = express();
+const server = createServer(app);
+const handleSocket = require("../socket/socket");
 const globalErrorHandler = require("../controllers/error.controller");
 const userRouter = require("../routers/user.router");
 const volunteerTaskRouter = require("../routers/volunteer.task.router");
@@ -27,7 +30,8 @@ app.all("*", (req, res, next) => {
 
 app.use(globalErrorHandler);
 
-const serv = app.listen(port, () => {
+handleSocket(server);
+const serv = server.listen(port, () => {
   process.env.NODE_ENV === "test"
     ? null
     : console.log(`Server is running on port ${port}`);
