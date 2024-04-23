@@ -4,13 +4,19 @@ Server for Volunteer Coordination Application using Express.
 
 ## Features
 
+- Create Task
 - Retrieve a list of all tasks
+- Retrieve a list of all the recommended tasks
 - Retrieve details of a specific task by ID
+- Update an existing task by ID
+- Delete an existing task by ID
 - Retrieve a list of all locations
 - Retrieve a list of all skilss
 - Create a new user
+- Retrieve a list of all users
 - Retrieve details of a specific user by ID
-- Update an existing task by ID
+- Update an existing user by ID
+- Delete an existing user by ID
 
 ## Before you start
 
@@ -25,25 +31,5 @@ Server for Volunteer Coordination Application using Express.
 
 ## How to Use
 
-1. ### **Retrieve all tasks:**
-   - Method: GET
-   - Request: http://localhost:8080/donations/
-2. ### **Retrieve details of a specific donation by ID:**
-   - Method: GET
-   - Request: http://localhost:8080/donations/:id
-   - Note: receives id in params (PATH VARIABLES)
-3. ### **Create a new donation:**
-   - Method: POST
-   - Request: http://localhost:8080/donations/
-   - Note: receives donation (id, donorName, amount, location) in the req body
-4. ### **Update an existing donation:**
-   - Method: PUT
-   - Request: http://localhost:8080/donations/:id
-   - Note: receives id in params (PATH VARIABLES) and what to update in the req body (donorName, amount, location)
-5. ### **Delete a donation:**
-   - Method: DELETE
-   - Request: http://localhost:8080/donations/:id
-   - Note: receives id in params (PATH VARIABLES)
-
-## Documentation
+See Documentation:
 > **Postman** > https://documenter.getpostman.com/view/31102943/2sA3Bq5reJ
