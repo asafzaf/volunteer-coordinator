@@ -37,3 +37,12 @@ exports.deleteVolunteerTask = catchAsync(async (req, res, next) => {
   );
   res.status(200).send(deleteVolunteerTask);
 });
+
+exports.recommendTasks = catchAsync(async (req, res, next) => {
+  const userData = await userRepository.retrieve(req.params.id);
+  const volunteerTasks = await volunteerTaskRepository.find();
+  const recommendedTasks = volunteerTasks.filter((volunteerTask) => {
+    return volunteerTask.skills.includes(userData.skills);
+  });
+  res.status(200).send(recommendedTasks);
+});

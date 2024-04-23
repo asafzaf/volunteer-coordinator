@@ -5,7 +5,7 @@ const {
   createVolunteerTask,
   updateVolunteerTask,
   deleteVolunteerTask,
-  updateVolunteers,
+  recommendTasks
 } = require("../controllers/volunteer.task.controller");
 
 const router = express.Router();
@@ -18,4 +18,5 @@ router
   .patch(updateVolunteerTask)
   .delete(deleteVolunteerTask);
 
+router.route("/recommendations/:id").get(recommendTasks);
 module.exports = router;
