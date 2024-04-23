@@ -6,14 +6,14 @@ Server for Volunteer Coordination Application using Express.
 
 - Create Task
 - Retrieve a list of all tasks
-- - Retrieve a list of all the recommended tasks
+- Retrieve a list of all the recommended tasks
 - Retrieve details of a specific task by ID
 - Update an existing task by ID
 - Delete an existing task by ID
 - Retrieve a list of all locations
 - Retrieve a list of all skilss
 - Create a new user
-- - Retrieve a list of all users
+- Retrieve a list of all users
 - Retrieve details of a specific user by ID
 - Update an existing user by ID
 - Delete an existing user by ID
