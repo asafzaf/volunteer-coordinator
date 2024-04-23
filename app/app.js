@@ -30,12 +30,15 @@ app.all("*", (req, res, next) => {
 
 app.use(globalErrorHandler);
 
-handleSocket(server);
 const serv = server.listen(port, () => {
   process.env.NODE_ENV === "test"
     ? null
     : console.log(`Server is running on port ${port}`);
 });
+
+setTimeout(() => {
+  handleSocket(server);
+}, 5000);
 
 process.on("unhandledRejection", (err) => {
   console.log(err.name, err.message);
