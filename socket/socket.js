@@ -14,7 +14,7 @@ function handleSocket(server) {
       userId === '""' ||
       userId === "''" ||
       userId === '""' ||
-      user === null
+      userId === null
     ) {
       return;
     }
