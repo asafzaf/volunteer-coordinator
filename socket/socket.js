@@ -5,6 +5,19 @@ function handleSocket(server) {
 
   io.on("connection", async (socket) => {
     const userId = socket.handshake.query.user_id;
+    if (
+      !userId ||
+      userId === "null" ||
+      userId === "undefined" ||
+      userId === "" ||
+      userId === "''" ||
+      userId === '""' ||
+      userId === "''" ||
+      userId === '""' ||
+      user === null
+    ) {
+      return;
+    }
     let userId1 = userId.replace(/['"]+/g, "");
     if (!userId1) {
       return;
