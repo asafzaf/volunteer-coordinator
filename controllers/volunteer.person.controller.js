@@ -21,6 +21,10 @@ exports.createVolunteerPerson = catchAsync(async (req, res, next) => {
 });
 
 exports.updateVolunteerPerson = catchAsync(async (req, res, next) => {
+  const volunteerPerson = await userRepository.retrieve(req.params.id);
+  if (!volunteerPerson) {
+    return res.status(404).send("Volunteer Person not found");
+  }
   const updateVolunteerPerson = await userRepository.put(
     req.params.id,
     req.body
