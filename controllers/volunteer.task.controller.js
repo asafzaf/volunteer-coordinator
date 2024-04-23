@@ -16,6 +16,9 @@ exports.getAllVolunteerTasks = catchAsync(async (req, res, next) => {
 
 exports.getVolunteerTaskById = catchAsync(async (req, res, next) => {
   const volunteerTask = await volunteerTaskRepository.retrieve(req.params.id);
+  if (!volunteerTask) {
+    return res.status(404).send("Volunteer Task not found");
+  }
   res.status(200).send(volunteerTask);
 });
 
@@ -25,6 +28,10 @@ exports.createVolunteerTask = catchAsync(async (req, res, next) => {
 });
 
 exports.updateVolunteerTask = catchAsync(async (req, res, next) => {
+  const volunteerTask = await volunteerTaskRepository.retrieve(req.params.id);
+  if (!volunteerTask) {
+    return res.status(404).send("Volunteer Task not found");
+  }
   const updateVolunteerTask = await volunteerTaskRepository.put(
     req.params.id,
     req.body
@@ -33,10 +40,14 @@ exports.updateVolunteerTask = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteVolunteerTask = catchAsync(async (req, res, next) => {
+  const volunteerTask = await volunteerTaskRepository.retrieve(req.params.id);
+  if (!volunteerTask) {
+    return res.status(404).send("Volunteer Task not found");
+  }
   const deleteVolunteerTask = await volunteerTaskRepository.delete(
     req.params.id
   );
-  res.status(200).send(deleteVolunteerTask);
+  res.status(204).send(deleteVolunteerTask);
 });
 
 exports.recommendTasks = catchAsync(async (req, res, next) => {

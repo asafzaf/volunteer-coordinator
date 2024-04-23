@@ -9,6 +9,9 @@ exports.getAllVolunteerPersons = catchAsync(async (req, res, next) => {
 
 exports.getVolunteerPersonById = catchAsync(async (req, res, next) => {
   const volunteerPerson = await userRepository.retrieve(req.params.id);
+  if (!volunteerPerson) {
+    return res.status(404).send("Volunteer Person not found");
+  }
   res.status(200).send(volunteerPerson);
 });
 
@@ -26,6 +29,11 @@ exports.updateVolunteerPerson = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteVolunteerPerson = catchAsync(async (req, res, next) => {
-  const deleteVolunteerPerson = await userRepository.delete(req.params.id);
-  res.status(200).send(deleteVolunteerPerson);
+  const volunteerPerson = await userRepository.retrieve(req.params.id);
+  if (!volunteerPerson) {
+    return res.status(404).send("Volunteer Person not found");
+  } else {
+    const deleteVolunteerPerson = await userRepository.delete(req.params.id);
+    res.status(204).send(deleteVolunteerPerson);
+  }
 });
