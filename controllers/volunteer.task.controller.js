@@ -41,12 +41,22 @@ exports.deleteVolunteerTask = catchAsync(async (req, res, next) => {
 
 exports.recommendTasks = catchAsync(async (req, res, next) => {
   const userData = await userRepository.retrieve(req.params.id);
+  if (!userData) {
+    return res.status(404).send("User not found");
+  }
   const volunteerTasks = await volunteerTaskRepository.find();
-  const recommendedTasks = volunteerTasks.filter((volunteerTask) => {
-    return volunteerTask.skills.includes(userData.skills);
+  const recommendedTasks = [];
+
+  volunteerTasks.forEach((volunteerTask) => {
+    if (
+      volunteerTask.skills.some((skill) => userData.skills.includes(skill)) ||
+      volunteerTask.location === userData.location
+    ) {
+      recommendedTasks.push(volunteerTask);
+    }
   });
   if (recommendedTasks.length === 0) {
-    res.status(404).send("No tasks found");
+    return res.status(404).send("No tasks found");
   }
   res.status(200).send(recommendedTasks);
 });
