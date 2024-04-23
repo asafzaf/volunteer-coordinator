@@ -1,5 +1,6 @@
 const catchAsync = require("../utils/catch.async");
 const volunteerTaskRepository = require("../repositories/volunteering.repository");
+const userRepository = require("../repositories/user.repository");
 
 exports.getAllVolunteerTasks = catchAsync(async (req, res, next) => {
   let volunteerTasks = await volunteerTaskRepository.find();
