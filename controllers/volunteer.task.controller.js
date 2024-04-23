@@ -44,5 +44,8 @@ exports.recommendTasks = catchAsync(async (req, res, next) => {
   const recommendedTasks = volunteerTasks.filter((volunteerTask) => {
     return volunteerTask.skills.includes(userData.skills);
   });
+  if (recommendedTasks.length === 0) {
+    res.status(404).send("No tasks found");
+  }
   res.status(200).send(recommendedTasks);
 });
