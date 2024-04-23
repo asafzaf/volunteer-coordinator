@@ -9,6 +9,7 @@ function handleSocket(server) {
     if (!userId1) {
       return;
     }
+    console.log(userId1);
     const user = await userRepository.retrieve(userId1);
     if (!user) {
       return;
